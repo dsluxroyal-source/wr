@@ -1,0 +1,17 @@
+import os
+import shutil
+print("File Organizer Bot")
+print("Sorting files by extension...")
+folder_path = input("Enter folder path: ")
+files = os.listdir(folder_path)
+for file in files:
+    file_path = os.path.join(folder_path, file)
+    if os.path.isdir(file_path):
+        continue
+    extension = file.split(".")[-1]
+    new_folder = os.path.join(folder_path, extension)
+    if not os.path.exist(new_folder):
+        os.mkdir(new_folder)
+    new_file_path = os.path.join(new_folder, file)
+    shutil.move(file_path, new_file_path)
+print("Files organized successfully!")
